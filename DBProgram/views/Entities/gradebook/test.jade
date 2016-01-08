@@ -1,0 +1,17 @@
+extends ../../layout
+
+block content
+  h1 NEW TEST!!!!!
+  p Welcome to #{title}
+
+  form(method='post', action='/gradebook/test')
+    fieldset
+      legend New Test
+      p Test Name
+      p
+        input(name='TestName')
+      p Test Date
+      p
+        input(name='TestDate')
+    p
+      input(type='submit', value='Save')

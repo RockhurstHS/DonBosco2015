@@ -8,6 +8,7 @@ block content
   a(href='/gradebook/create') Create Grade
   a(href='/gradebook/delete') Delete Grade
   a(href='/gradebook/update') Update Grade
+  a(href='/gradebook/test') Make A New Test
   
   table.indextable
     tr
@@ -16,6 +17,7 @@ block content
       th First Name
       th Last Name
       th Test ID
+      th Test Name
       th Score
     - each grade in gradebook
         tr
@@ -24,6 +26,7 @@ block content
           td= grade.FirstName
           td= grade.LastName
           td= grade.TestID
+          td= grade.TestName
           td
             form(method='post', action='/gradebook/update')
               input(name='StudentID',hidden,value=grade.StudentID)

@@ -7,11 +7,22 @@ block content
   
   form(method='post', action='/courses/update') 
     fieldset
-      legend Course
-      p CourseName </br>
-        input(name='CourseName')
-      p TeacherID </br>
+      legend Updated Information
+      p Teacher ID
+      p
         input(name='TeacherID')
-      p TimeHeld </br>
+      p Course Name
+      p
+        input(name='CourseName')
+      p Time Held
+      p
         input(name='TimeHeld')
-      input(type='submit',value='Save')
+ 
+    fieldset
+      legend Course to Edit
+      p Course ID
+      p
+        input(name='ID')
+      p 
+    p
+      input(type='submit', value='Save')

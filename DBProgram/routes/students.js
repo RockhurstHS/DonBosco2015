@@ -27,18 +27,6 @@ router.get('/create', function(req,res,next) {
   res.render('entities/students/create', { title: 'New Student' });
 });
 
-
-/* GET one student and address */
-router.get('/:id', function(req,res,next) {
-  var id = req.params.id;
-  db.all("SELECT * FROM Student " +
-         "WHERE Student.ID = " +id,
-  function(err, rows) {
-    console.log('one student fetched, id = ' + id);
-    res.render('entities/students/profile', { title: rows[0].FirstName, data: rows[0] });
-  });
-});
-
 /* POST new student */
 router.post('/create', function(req,res,next){
   var data = req.body;
@@ -48,7 +36,7 @@ router.post('/create', function(req,res,next){
     // Now we are inside a transaction.
     // Use transaction as normal sqlite3.Database object.
     transaction.run(
-      "INSERT INTO Student(FirstName, MiddleInitial, LastName, SSN, RegistrationDate, MaritalStatus, Email, PhoneNumber, DOB, NativeLanguage, Gender, Street, City, State, Zip, Region, Country, PFirstName, PMiddleInitial, PLastName, Relation, PPhoneNumber, Email) " +
+      "INSERT INTO Student(FirstName, MiddleInitial, LastName, SSN, RegistrationDate, MaritalStatus, Email, PhoneNumber, DOB, NativeLanguage, Gender, Street, City, State, Zip, Region, Country, PFirstName, PMiddleInitial, PLastName, Relation, PPhoneNumber, PEmail) " +
       "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
       data.FirstName,
       data.MiddleInitial,
@@ -87,5 +75,99 @@ router.post('/create', function(req,res,next){
   res.redirect('/students');
 });
 
+/* GET form - update student */
+router.get('/update', function(req,res,next) {
+  console.log('Going to the update')
+  res.render('entities/students/update', { title: 'Update Student' });
+});
+
+/* POST update student */
+router.post('/update', function(req,res,next){
+  var data = req.body;
+  // Begin a transaction.
+  // http://stackoverflow.com/questions/28803520/does-sqlite3-have-prepared-statements-in-node-js
+  db.beginTransaction(function(err, transaction) {
+    // Now we are inside a transaction.
+    // Use transaction as normal sqlite3.Database object.
+    transaction.run(
+      "UPDATE Student SET FirstName=?, MiddleInitial=?, LastName=?, SSN=?, RegistrationDate=?, MaritalStatus=?, Email=?, PhoneNumber=?, DOB=?, NativeLanguage=?, Gender=?, Street=?, City=?, State=?, Zip=?, Region=?, Country=?, PFirstName=?, PMiddleInitial=?, PLastName=?, Relation=?, PPhoneNumber=?, PEmail=? WHERE ID=?",
+      data.FirstName,
+      data.MiddleInitial,
+      data.LastName,
+      data.SSN,
+      new Date().toDateString(),
+      data.MaritalStatus,
+      data.Email,
+      data.PhoneNumber,
+      data.DOB,
+      data.NativeLanguage,
+      data.Gender,
+      data.Street,
+      data.City,
+      data.State,
+      data.Zip,
+      data.Region,
+      data.Country,
+      data.PFirstName,
+      data.PMiddleInitial,
+      data.PLastName,
+      data.Relation,
+      data.PPhoneNumber,
+      data.PEmail,
+      data.ID
+    );
+    console.log('We have passed transaction at this point')
+
+    transaction.commit(function(err) {
+      if(err)
+        console.log('commit fail');
+      else
+        console.log('commit success');
+    });
+  });
+
+  res.redirect('/students');
+});
+
+/* GET form - delete student */
+router.get('/delete', function(req,res,next) {
+  res.render('entities/students/delete', { title: 'Delete Student' });
+});
+
+/* DELETE new student */
+router.post('/delete', function(req,res,next){
+  var data = req.body;
+  // Begin a transaction.
+  // http://stackoverflow.com/questions/28803520/does-sqlite3-have-prepared-statements-in-node-js
+  db.beginTransaction(function(err, transaction) {
+    // Now we are inside a transaction.
+    // Use transaction as normal sqlite3.Database object.
+    transaction.run(
+     "DELETE FROM Student WHERE LastName=?",
+      data.LastName
+      );
+
+    transaction.commit(function(err) {
+      if(err)
+        console.log('commit fail');
+      else
+        console.log('commit success');
+
+    });
+res.redirect('/students');
+  });
+
+});
+
+/* GET one student and address */
+router.get('/:id', function(req,res,next) {
+  var id = req.params.id;
+  db.all("SELECT * FROM Student " +
+         "WHERE Student.ID = " +id,
+  function(err, rows) {
+    console.log('one student fetched, id = ' + id);
+    res.render('entities/students/profile', { title: rows[0].FirstName, data: rows[0] });
+  });
+});
 
 module.exports = router;

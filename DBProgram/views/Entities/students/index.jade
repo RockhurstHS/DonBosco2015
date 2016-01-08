@@ -3,10 +3,11 @@ extends ../../layout
 block content
   h1 Students
 
-  
-  
+
   a(href='/students/create') Create Student
-  
+  a(href='/students/update') Update Student
+  a(href='/students/delete') Delete Student
+   
   - if (data)
     - var students = data
     table.indextable

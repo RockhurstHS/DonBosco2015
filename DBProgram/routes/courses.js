@@ -23,7 +23,6 @@ router.get('/create', function(req,res,next) {
 
 router.post('/create', function(req,res,next){
   var data = req.body;
-  res.send(req.body)
   // Begin a transaction.
   // http://stackoverflow.com/questions/28803520/does-sqlite3-have-prepared-statements-in-node-js
   db.beginTransaction(function(err, transaction) {
@@ -46,7 +45,7 @@ router.post('/create', function(req,res,next){
     });
   });
 
-  res.send(req.body);
+res.redirect('/courses');
 });
 
 /* Draw the delete course */
@@ -85,7 +84,7 @@ router.get('/update', function(req, res, next){
 });
 
 /* update course */
-router.post('/course', function(req,res,next){
+router.post('/update', function(req,res,next){
   var data = req.body;
   // Begin a transaction.
   // http://stackoverflow.com/questions/28803520/does-sqlite3-have-prepared-statements-in-node-js
@@ -93,10 +92,11 @@ router.post('/course', function(req,res,next){
     // Now we are inside a transaction.
     // Use transaction as normal sqlite3.Database object.
     transaction.run(
-     "UPDATE Course SET TeacherID=?, CourseName=?, TimeHeld=?",
+     "UPDATE Course SET TeacherID=?, CourseName=?, TimeHeld=? WHERE ID=?" ,
       data.TeacherID,
       data.CourseName,
-      data.TimeHeld
+      data.TimeHeld,
+      data.ID
       );
 
 
