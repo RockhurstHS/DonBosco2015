@@ -1,0 +1,20 @@
+extends ../../layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  - var courses = data
+  
+  table.indextable
+    tr
+      th ID
+      th TeacherID
+      th CourseName
+      th TimeHeld
+    - each course in courses
+      tr
+        td= course.ID
+        td= course.TeacherID
+        td= course.CourseName
+        td= course.TimeHeld

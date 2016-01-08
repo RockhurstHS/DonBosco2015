@@ -1,0 +1,30 @@
+extends ../../layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  - var teachers = data
+  
+  a(href='/teachers/create') CreateTeacher
+  
+  table.indextable
+    tr
+      th ID
+      th First Name
+      th Middle Initial
+      th Last Name
+      th Email
+      th Phone Number
+      th Gender
+      
+    - each teacher in teachers
+      tr
+        td= teacher.ID
+        td= teacher.FirstName
+        td= teacher.MiddleInitial
+        td= teacher.LastName
+        td= teacher.Email
+        td= teacher.PhoneNumber
+        td= teacher.Gender
+  

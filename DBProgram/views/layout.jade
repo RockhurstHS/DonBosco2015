@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    div#logo
+      img(src='http://chambermaster.blob.core.windows.net/images/customers/9142/members/1697/logos/MEMBER_PAGE_HEADER/Logo_hi_res_1.jpg', alt='HTML5 Icon', style='width:365px;height:128px;')
+    div#clock
+    div#date
+    div#top
+      a(href='/students') Students
+      a(href='/teachers') Teachers
+      a(href='/courses') Courses
+      a(href='/gradebook') Gradebook
+    block content
+    script(type='text/javascript').
+      window.onload = displayTime;
+      function displayTime() {
+        var clock = document.getElementById("clock");
+        var date = document.getElementById("date");
+        var currentTime = new Date();
+        var month = currentTime.getMonth() + 1;
+        var day = currentTime.getDate();
+        var year = currentTime.getFullYear();
+        clock.innerHTML = currentTime.toLocaleTimeString();
+        date.innerHTML = month + "/" + day + "/" + year;
+        setTimeout(displayTime, 1000);
+      }

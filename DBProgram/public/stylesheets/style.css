@@ -1,0 +1,81 @@
+body {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+#top {
+    background-color: #EAEAEA;
+    padding: 20px;
+    text-align: center;
+    border-top: solid #B5B5B5 1pt;
+    border-bottom: solid #B5B5B5 1pt;
+}
+#logo {
+    display: block;
+}
+a {
+    text-decoration: none;
+    color: #3188DE;
+    margin: 4%;
+    font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+    font-size: 20px;
+    text-align: center;
+    font-weight: normal;
+}
+#welcome {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 40px;
+    text-align: center;
+    font-weight: normal;
+    margin-top: 60px;
+    color: #0A0A0A;
+}
+#quote {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 24px;
+    text-align: center;
+    font-weight: normal;
+    margin-top: 40px;
+    margin-right: 18%;
+    margin-left: 18%;
+    color: #0A0A0A;
+}
+#speaker {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 16px;
+    text-align: center;
+    font-weight: normal;
+    margin-top: 0px;
+    margin-right: 18%;
+    margin-left: 60%;
+    color: #0A0A0A;
+}
+#clock {
+    text-align: right;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    margin-right: 1%;
+    margin-bottom: 3pt;
+    color: #0A0A0A;
+}
+#date {
+    text-align: right;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    margin-right: 1%;
+    margin-bottom: 3pt;
+    color: #0A0A0A;
+}
+.indextable tr:nth-child(even) {
+  background-color: #E0E0E0;
+}
+.indextable tr:nth-child(odd) {
+  background-color: white;
+}
+.indextable td, .indextable th {
+  padding-right: 20px;
+  padding-left: 5px;
+}
+.indextable th {
+  background-color: #A0AEE5;
+}

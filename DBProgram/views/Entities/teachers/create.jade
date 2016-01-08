@@ -1,0 +1,29 @@
+extends ../../layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  form(method='post', action='/teachers/create')
+    fieldset
+      legend Teacher
+      p FirstName
+      p
+        input(name='FirstName')
+      p MiddleInitial
+      p
+        input(name='MiddleInitial')
+      p LastName
+      p
+        input(name='LastName')
+      p Email
+      p
+        input(name='Email')
+      p PhoneNumber
+      p
+        input(name='PhoneNumber')
+      p Gender
+      p
+        input(name='Gender')  
+    p
+      input(type='submit', value='Save')
