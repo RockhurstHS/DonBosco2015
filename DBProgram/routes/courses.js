@@ -49,10 +49,9 @@ router.post('/create', function(req,res,next){
   res.send(req.body);
 });
 
+/* Draw the delete course */
 router.get('/delete', function(req, res, next){
-   db.all("SELECT * FROM course", function(err,rows){
-    res.render('entities/courses/delete', { title: 'Delete Courses', data: rows });
-  });
+   res.render('entities/courses/delete', { title: 'Delete Course' });
 });
 
 /* DELETE -  delete course */
@@ -64,7 +63,7 @@ router.post('/delete', function(req,res,next){
     // Now we are inside a transaction.
     // Use transaction as normal sqlite3.Database object.
     transaction.run(
-     "DELETE FROM Course WHERE CourseID=?",
+     "DELETE FROM Course WHERE ID=?",
       data.CourseID
       );
 
@@ -78,7 +77,6 @@ router.post('/delete', function(req,res,next){
     });
 res.redirect('/courses');
   });
-
 });
 
 module.exports = router;
