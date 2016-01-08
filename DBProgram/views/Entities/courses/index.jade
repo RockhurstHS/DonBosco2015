@@ -16,14 +16,11 @@ block content
       th TeacherID
       th CourseName
       th TimeHeld
-      th Delete
+      
     - each course in courses
       tr
         td= course.ID
         td= course.TeacherID
         td= course.CourseName
         td= course.TimeHeld
-        td  
-            button(onClick="myfunction")
-              fu Delete
-              //for some reason the button doesn't use the first word
+        
