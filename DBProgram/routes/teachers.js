@@ -91,7 +91,6 @@ router.get('/update', function(req,res,next) {
 /* POST update teacher */
 router.post('/update', function(req,res,next){
   var data = req.body;
-  res.send(req.body)
   // Begin a transaction.
   // http://stackoverflow.com/questions/28803520/does-sqlite3-have-prepared-statements-in-node-js
   db.beginTransaction(function(err, transaction) {
@@ -117,6 +116,6 @@ router.post('/update', function(req,res,next){
     });
   });
 
-  res.send(req.body);
+  res.redirect('/teachers');
 });
 module.exports = router;

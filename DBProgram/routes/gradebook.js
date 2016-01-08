@@ -115,7 +115,7 @@ router.post('/update', function(req,res,next){
     });
   });
 
-  res.send(req.body);
+  res.redirect('/gradebook');
 });
 
 module.exports = router;
