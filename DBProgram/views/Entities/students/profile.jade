@@ -1,0 +1,24 @@
+extends ../../layout
+
+block content
+  h1 Students
+  
+  - var student = data
+  
+  table.indextable
+    tr
+      th ID
+      th FirstName
+      th MiddleInitial
+      th LastName
+      th RegistrationDate
+      th NativeLanguage
+      th Gender
+    tr
+      td= student.ID
+      td= student.FirstName
+      td= student.MiddleInitial
+      td= student.LastName
+      td= student.RegistrationDate
+      td= student.NativeLanguage
+      td= student.Gender

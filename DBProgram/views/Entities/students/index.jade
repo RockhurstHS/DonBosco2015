@@ -1,35 +1,31 @@
 extends ../../layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 Students
 
-  - var students = data
   
-  table.indextable
-    tr
-      th ID
-      th FirstName
-      th MiddleInitial
-      th LastName
-      th RegistrationDate
-      th Email
-      th PrimaryPhoneNumber
-      th NativeLanguage
-      th Gender
-      th Street
-      th City
-    - each student in students
+  
+  a(href='/students/create') Create Student
+  
+  - if (data)
+    - var students = data
+    table.indextable
       tr
-        td= student.ID
-        td= student.FirstName
-        td= student.MiddleInitial
-        td= student.LastName
-        td= student.RegistrationDate
-        td= student.Email
-        td= student.PrimaryPhoneNumber
-        td= student.NativeLanguage
-        td= student.Gender
-        td= student.Street
-        td= student.City
-        
+        th ID
+        th FirstName
+        th MiddleInitial
+        th LastName
+        th RegistrationDate
+        th NativeLanguage
+        th Gender
+      - each student in students
+        tr
+          td= student.ID
+          td= student.FirstName
+          td= student.MiddleInitial
+          td= student.LastName
+          td= student.RegistrationDate
+          td= student.NativeLanguage
+          td= student.Gender
+  - else
+    div No students.

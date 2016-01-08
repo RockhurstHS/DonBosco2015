@@ -1,0 +1,104 @@
+extends ../../layout
+
+block content
+
+  form(method='post', action='/students/create')
+    fieldset
+      h1 New Student
+      p First Name
+      p
+        input(name='FirstName')
+      p Middle Initial
+      p
+        input(name='MiddleInitial')
+      p Last Name
+      p
+        input(name='LastName')
+        
+      h3 Contact Information
+      p Email
+      p
+        input(name='Email')
+      p PhoneNumber
+      p
+        input(name='PhoneNumber')
+
+      h3 Current Address
+      p Street
+      p
+        input(name='Street')
+      p City
+      p
+        input(name='City')
+      p State
+      p
+        input(name='State')
+      p Zip
+      p
+        input(name='Zip')
+      p Country
+      p
+        input(name='Country')
+      
+      h3 Personal Information
+      p SSN
+      P
+        input(name='SSN')
+      p Marital Status
+      p
+        input(name='MaritalStatus')
+      p Gender
+      p
+        input(name='Gender')
+      p Date of Birth
+      p
+        input(name='DOB')
+      p Native Language
+      p
+        input(name='NativeLanguage')
+      
+      h3 Origin Address
+      p Region
+      p
+        input(name='Region')
+      p Country
+      p
+        input(name='Country')
+      
+      h3 Primary Contact
+      p First Name
+      p
+        input(name='PFirstName')
+      p Middle Initial
+      p
+        input(name='PMiddleInitial')
+      p Last Name
+      p
+        input(name='PLastName')
+      p Relation
+      p
+        input(name='Relation')
+      p Phone Number
+      p
+        input(name='PhoneNumber')
+      p Email
+      p
+        input(name='Email')
+      p Street
+      p
+        input(name='Street')
+      p City
+      p
+        input(name='City')
+      p State
+      p
+        input(name='State')
+      p Zip
+      p
+        input(name='Zip')
+      p Country
+      p
+        input(name='Country')
+        
+    p
+      input(type='submit', value='Save')

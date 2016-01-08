@@ -1,4 +1,4 @@
-var sqliteFileName = "STEAMdatabase";
+var sqliteFileName = "NEWDatabase";
 
 var express = require('express');
 var sqlite3 = require("sqlite3");
