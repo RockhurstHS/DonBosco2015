@@ -9,7 +9,7 @@ var db = new TransactionDatabase(engine);
 
 engine.exec("PRAGMA foreign_keys = ON");
 
-/* GET all dealerships home page. */
+/* GET all students home page. */
 router.get('/', function(req, res, next) {
   db.all("SELECT * FROM student s INNER JOIN address a ON s.AddressID=a.ID", function(err,rows){
     console.log('students rows fetched: ' + rows.length);

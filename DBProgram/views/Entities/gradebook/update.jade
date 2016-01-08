@@ -1,0 +1,26 @@
+extends ../../layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  
+  form(method='post', action='/gradebook/update') 
+    fieldset
+      legend Updated Grade
+      p Student ID
+      p
+        input(name='StudentID')
+      p Test ID
+      p
+        input(name='TestID')
+      p Score
+      p
+        input(name='Score')
+    fieldset
+      legend Grade to Edit
+      p ID
+      p
+        input(name='ID')
+    p
+      input(type='submit', value='Save')

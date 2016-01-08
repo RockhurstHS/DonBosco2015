@@ -1,0 +1,20 @@
+extends ../../layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  form(method='post', action='/gradebook/create')
+    fieldset
+      legend New Grade
+      p Student ID
+      p
+        input(name='StudentID')
+      p Test ID
+      p
+        input(name='TestID')
+      p Score
+      p
+        input(name='Score')
+    p
+      input(type='submit', value='Save')
