@@ -49,16 +49,36 @@ router.post('/create', function(req,res,next){
   res.send(req.body);
 });
 
-/* DELETE -  delete course */
-var courseID
-router.delete('/delete',function(req,res,next){
-  res.send(req.body)
-  db.beginTransaction(function(err,transaction){
-    transacion.run (
-      "DELETE FROM Courses" +
-      "WHERE CourseID = "
-    )
+router.get('/delete', function(req, res, next){
+   db.all("SELECT * FROM course", function(err,rows){
+    res.render('entities/courses/delete', { title: 'Delete Courses', data: rows });
   });
+});
+
+/* DELETE -  delete course */
+router.post('/delete', function(req,res,next){
+  var data = req.body;
+  // Begin a transaction.
+  // http://stackoverflow.com/questions/28803520/does-sqlite3-have-prepared-statements-in-node-js
+  db.beginTransaction(function(err, transaction) {
+    // Now we are inside a transaction.
+    // Use transaction as normal sqlite3.Database object.
+    transaction.run(
+     "DELETE FROM Course WHERE CourseID=?",
+      data.CourseID
+      );
+
+
+    transaction.commit(function(err) {
+      if(err)
+        console.log('commit fail');
+      else
+        console.log('commit success');
+
+    });
+res.redirect('/courses');
+  });
+
 });
 
 module.exports = router;
