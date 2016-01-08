@@ -79,4 +79,36 @@ res.redirect('/courses');
   });
 });
 
+/* Draw update course */
+router.get('/update', function(req, res, next){
+   res.render('entities/courses/update', { title: 'Update Course' });
+});
+
+/* update course */
+router.post('/course', function(req,res,next){
+  var data = req.body;
+  // Begin a transaction.
+  // http://stackoverflow.com/questions/28803520/does-sqlite3-have-prepared-statements-in-node-js
+  db.beginTransaction(function(err, transaction) {
+    // Now we are inside a transaction.
+    // Use transaction as normal sqlite3.Database object.
+    transaction.run(
+     "UPDATE Course SET TeacherID=?, CourseName=?, TimeHeld=?"
+      data.TeacherID,
+      data.CourseName,
+      data.TimeHeld
+      );
+
+
+    transaction.commit(function(err) {
+      if(err)
+        console.log('commit fail');
+      else
+        console.log('commit success');
+
+    });
+res.redirect('/courses');
+  });
+});
+
 module.exports = router;
