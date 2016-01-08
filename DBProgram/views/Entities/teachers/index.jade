@@ -6,6 +6,8 @@ block content
   - var teachers = data
   
   a(href='/teachers/create') CreateTeacher
+  a(href='/teachers/delete') DeleteTeacher
+  a(href='/teachers/update') UpdateTeacher
   
   table.indextable
     tr
@@ -15,7 +17,7 @@ block content
       th Last Name
       th Email
       th Phone Number
-      th Gender
+
       
     - each teacher in teachers
       tr
@@ -25,5 +27,5 @@ block content
         td= teacher.LastName
         td= teacher.Email
         td= teacher.PhoneNumber
-        td= teacher.Gender
+
   

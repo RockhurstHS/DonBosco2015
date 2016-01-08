@@ -1,0 +1,33 @@
+extends ../../layout
+
+block content
+  h1 Gradebook
+
+  - var gradebook = data
+  
+  a(href='/gradebook/create') Create Grade
+  a(href='/gradebook/delete') Delete Grade
+  a(href='/gradebook/update') Update Grade
+  
+  table.indextable
+    tr
+      th Grade ID
+      th Student ID
+      th First Name
+      th Last Name
+      th Test ID
+      th Score
+    - each grade in gradebook
+        tr
+          td= grade.ID
+          td= grade.StudentID
+          td= grade.FirstName
+          td= grade.LastName
+          td= grade.TestID
+          td
+            form(method='post', action='/gradebook/update')
+              input(name='StudentID',hidden,value=grade.StudentID)
+              input(name='TestID',hidden,value=grade.TestID)
+              input(name='Score',value=grade.Score)
+              input(name='ID',hidden,value=grade.ID)
+              input(type='submit', value='Save')

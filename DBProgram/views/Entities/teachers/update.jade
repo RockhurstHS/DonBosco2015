@@ -1,0 +1,36 @@
+extends ../../layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  
+  form(method='post', action='/teachers/update') 
+    fieldset
+      legend Updated Information
+      p First Name
+      p
+        input(name='FirstName')
+      p Middle Initial
+      p
+        input(name='MiddleInitial')
+      p Last Name
+      p
+        input(name='LastName')
+      p Email
+      p
+        input(name='Email')
+      p Phone Number
+      p
+        input(name='PhoneNumber')
+      p Gender
+      p
+        input(name='Gender')  
+    fieldset
+      legend Teacher to Edit
+      p Teacher ID
+      p
+        input(name='ID')
+      p 
+    p
+      input(type='submit', value='Save')

@@ -1,4 +1,4 @@
-var sqliteFileName = "NEWDatabase";
+var sqliteFileName = "STEAMdatabase";
 
 var express = require('express');
 var sqlite3 = require("sqlite3");
@@ -9,19 +9,23 @@ var db = new TransactionDatabase(engine);
 
 engine.exec("PRAGMA foreign_keys = ON");
 
-/* GET all teachers home page. */
+/* GET all grades home page. */
 router.get('/', function(req, res, next) {
-  db.all("SELECT * FROM teacher", function(err,rows){
-    console.log('teachers rows fetched: ' + rows.length);
-    res.render('entities/teachers/index', { title: 'teachers', data: rows });
+  db.all("SELECT g.ID, g.StudentID, g.TestID, g.Score, s.FirstName, s.LastName FROM gradebook g INNER JOIN student s ON g.StudentID=s.ID", function(err,rows){
+    console.log('courses rows fetched: ' + rows.length);
+    res.render('entities/gradebook/index', { title: 'Gradebook', data: rows });
   });
 });
-/* GET form - create teacher */
+
+
+
+
+/* GET form - create grade */
 router.get('/create', function(req,res,next) {
-  res.render('entities/teachers/create', { title: 'New Teacher' });
+  res.render('entities/gradebook/create', { title: 'New Grade' });
 });
 
-/* POST new teacher */
+/* POST new grade */
 router.post('/create', function(req,res,next){
   var data = req.body;
   // Begin a transaction.
@@ -30,14 +34,11 @@ router.post('/create', function(req,res,next){
     // Now we are inside a transaction.
     // Use transaction as normal sqlite3.Database object.
     transaction.run(
-      "INSERT INTO Teacher(FirstName, MiddleInitial, LastName, Email, PhoneNumber, Gender) " +
-      "VALUES(?,?,?,?,?,?)",
-      data.FirstName,
-      data.MiddleInitial,
-      data.LastName,
-      data.Email,
-      data.PhoneNumber,
-      data.Gender
+      "INSERT INTO Gradebook(StudentID, TestID, Score) " +
+      "VALUES(?,?,?)",
+      data.StudentID,
+      data.TestId,
+      data.Score
     );
 
 
@@ -48,13 +49,13 @@ router.post('/create', function(req,res,next){
         console.log('commit success');
     });
   });
-res.redirect('/teachers');
+res.redirect('/gradebook');
 
 });
 
 /* GET form - delete teacher */
 router.get('/delete', function(req,res,next) {
-  res.render('entities/teachers/delete', { title: 'Delete Teacher' });
+  res.render('entities/gradebook/delete', { title: 'Delete Grade' });
 });
 
 /* DELETE new teacher */
@@ -66,8 +67,8 @@ router.post('/delete', function(req,res,next){
     // Now we are inside a transaction.
     // Use transaction as normal sqlite3.Database object.
     transaction.run(
-     "DELETE FROM Teacher WHERE LastName=?",
-      data.LastName
+     "DELETE FROM Gradebook WHERE ID=?",
+      data.ID
       );
 
 
@@ -78,32 +79,30 @@ router.post('/delete', function(req,res,next){
         console.log('commit success');
 
     });
-res.redirect('/teachers');
+res.redirect('/gradebook');
   });
 
 });
 
 /* GET form - update teacher */
 router.get('/update', function(req,res,next) {
-  res.render('entities/teachers/update', { title: 'Update Teacher' });
+  res.render('entities/gradebook/update', { title: 'Update Grades' });
 });
 
 /* POST update teacher */
 router.post('/update', function(req,res,next){
   var data = req.body;
+  //res.send(req.body)
   // Begin a transaction.
   // http://stackoverflow.com/questions/28803520/does-sqlite3-have-prepared-statements-in-node-js
   db.beginTransaction(function(err, transaction) {
     // Now we are inside a transaction.
     // Use transaction as normal sqlite3.Database object.
     transaction.run(
-      "UPDATE Teacher SET FirstName=?, MiddleInitial=?, LastName=?, Email=?, PhoneNumber=?, Gender=? WHERE ID=?",
-      data.FirstName,
-      data.MiddleInitial,
-      data.LastName,
-      data.Email,
-      data.PhoneNumber,
-      data.Gender,
+      "UPDATE Gradebook SET StudentID=?, TestID=?, Score=? WHERE ID=?",
+      data.StudentID,
+      data.TestID,
+      data.Score,
       data.ID
     );
 
@@ -116,6 +115,7 @@ router.post('/update', function(req,res,next){
     });
   });
 
-  res.redirect('/teachers');
+  res.redirect('/gradebook');
 });
+
 module.exports = router;
