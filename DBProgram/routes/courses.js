@@ -1,4 +1,4 @@
-var sqliteFileName = "NEWDatabase";
+var sqliteFileName = "STEAMdatabase";
 
 var express = require('express');
 var sqlite3 = require("sqlite3");
@@ -93,7 +93,7 @@ router.post('/course', function(req,res,next){
     // Now we are inside a transaction.
     // Use transaction as normal sqlite3.Database object.
     transaction.run(
-     "UPDATE Course SET TeacherID=?, CourseName=?, TimeHeld=?"
+     "UPDATE Course SET TeacherID=?, CourseName=?, TimeHeld=?",
       data.TeacherID,
       data.CourseName,
       data.TimeHeld

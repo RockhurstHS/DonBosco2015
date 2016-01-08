@@ -37,7 +37,7 @@ router.post('/create', function(req,res,next){
       "INSERT INTO Gradebook(StudentID, TestID, Score) " +
       "VALUES(?,?,?)",
       data.StudentID,
-      data.TestId,
+      data.TestID,
       data.Score
     );
 

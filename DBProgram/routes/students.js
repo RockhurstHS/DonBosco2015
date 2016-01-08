@@ -1,4 +1,4 @@
-var sqliteFileName = "NEWDatabase";
+var sqliteFileName = "STEAMdatabase";
 
 var express = require('express');
 var sqlite3 = require("sqlite3");
@@ -8,8 +8,6 @@ var engine = new sqlite3.Database(sqliteFileName, sqlite3.OPEN_READWRITE | sqlit
 var db = new TransactionDatabase(engine);
 
 engine.exec("PRAGMA foreign_keys = ON");
-
-
 
 /* GET all students home page. */
 router.get('/', function(req, res, next) {
