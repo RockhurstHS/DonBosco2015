@@ -1,0 +1,15 @@
+extend ../../layout
+block content
+  h1=title
+  p Welcome to #{title}
+  
+  form(method='post',action='/courses/create')
+    fieldset
+      legend Course
+      p CourseName </br>
+        input(name='CourseName')
+      p TeacherID </br>
+        input(name='TeacherID')
+      p TimeHeld </br>
+        input(name='TimeHeld')
+      input(type='submit',value='Save')
