@@ -1,6 +1,12 @@
 body {
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
+
+h1{
+  font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+  font-weight: normal;
+}
+
 #top {
     background-color: #EAEAEA;
     padding: 20px;
