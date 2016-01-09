@@ -7,6 +7,12 @@ block content
   
   form(method='post', action='/teachers/update') 
     fieldset
+      legend Teacher to Edit
+      p Teacher ID
+      p
+        input(name='ID')
+      p 
+    fieldset
       legend Updated Information
       p First Name
       p
@@ -26,11 +32,6 @@ block content
       p Gender
       p
         input(name='Gender')  
-    fieldset
-      legend Teacher to Edit
-      p Teacher ID
-      p
-        input(name='ID')
-      p 
+    
     p
       input(type='submit', value='Save')

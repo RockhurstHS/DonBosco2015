@@ -2,19 +2,20 @@ extends ../../layout
 
 block content
 
-  h1= title
-  p Welcome to #{title}
+  h1 Courses
 
   - var courses = data
   a(href='/courses/create') Create Course
-  a(href='/courses/delete') Delete Course
   a(href='/courses/update') Update Course
+  a(href='/courses/delete') Delete Course
   
   
   table.indextable
     tr
       th ID
       th TeacherID
+      th FirstName
+      th LastName
       th CourseName
       th TimeHeld
       
@@ -22,6 +23,8 @@ block content
       tr
         td= course.ID
         td= course.TeacherID
+        td= course.FirstName
+        td= course.LastName
         td= course.CourseName
         td= course.TimeHeld
         

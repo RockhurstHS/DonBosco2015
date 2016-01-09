@@ -11,7 +11,7 @@ engine.exec("PRAGMA foreign_keys = ON");
 
 /* GET all dealerships home page. */
 router.get('/', function(req, res, next) {
-  db.all("SELECT * FROM course", function(err,rows){
+  db.all("SELECT c.ID, t.FirstName, t.ID, t.LastName, c.CourseName, c.TimeHeld, c.TeacherID FROM course c JOIN teacher t ON c.TeacherID=t.ID", function(err,rows){
     console.log('courses rows fetched: ' + rows.length);
     res.render('entities/courses/index', { title: 'courses', data: rows });
   });

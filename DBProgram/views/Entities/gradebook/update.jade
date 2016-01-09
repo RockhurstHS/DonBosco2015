@@ -7,6 +7,11 @@ block content
   
   form(method='post', action='/gradebook/update') 
     fieldset
+      legend Grade to Edit
+      p ID
+      p
+        input(name='ID')
+    fieldset
       legend Updated Grade
       p Student ID
       p
@@ -17,10 +22,6 @@ block content
       p Score
       p
         input(name='Score')
-    fieldset
-      legend Grade to Edit
-      p ID
-      p
-        input(name='ID')
+
     p
       input(type='submit', value='Save')

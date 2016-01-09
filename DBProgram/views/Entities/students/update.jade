@@ -4,6 +4,12 @@ block content
   
   form(method='post', action='/students/update')
     fieldset
+      label Student to Change
+      p Student ID
+      p
+        input(name='ID')
+      p
+    fieldset
       h1 Updated Information
       p First Name
       p
@@ -85,11 +91,5 @@ block content
       p
         input(name='PEmail')
 
-    fieldset
-      label Student to Change
-      p Student ID
-      p
-        input(name='ID')
-      p
     p
       input(type='submit', value='Save')
