@@ -1,3 +1,5 @@
+-- written for SQLite3
+
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE Teacher(
