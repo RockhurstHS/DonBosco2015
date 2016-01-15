@@ -81,7 +81,7 @@ FOREIGN KEY (CourseID) REFERENCES Course(ID)
   AppropriateAssociatedInformation   TEXT,
   IdentifyInformation                TEXT,
   ConstructMeaning                   TEXT,
-  ExtendMeaning                      TEXT,
+  ExtendMeaning                      TEXT
 );
 
  CREATE TABLE Listening(
@@ -188,46 +188,17 @@ VALUES(1, 'A', '1,2,3,5', '8,9,10', '14,17,20', '11,23', '21', '4,18', '6,7', '2
 INSERT INTO Writing(TestNumber,TestLetter,NumbersandNumercay,VerbPhrases,
     NounPhrases,WritingConventions,SentenceFormation,SentenceCoherence,
     WriteToDescribe,WriteToAcomplishTasks,ExtendedWriting)
-VALUES (1,'A','1,2,3,5','4,8,11,12','6,7,9,16','10,13,14,15','17,18',
-        '19,20','1,2','3,4','5');
-INSERT INTO Writing(TestNumber,TestLetter,NumbersandNumercay,VerbPhrases,
-    NounPhrases,WritingConventions,SentenceFormation,SentenceCoherence,
-    WriteToDescribe,WriteToAcomplishTasks,ExtendedWriting)
-VALUES (1,'B','1,2,3,4','5,8,16,17','6,7,9,15','10,12,13,14','11,18',
-        '19,20','1,2','3,4','5');
-INSERT INTO Writing(TestNumber,TestLetter,NumbersandNumercay,VerbPhrases,
-    NounPhrases,WritingConventions,SentenceFormation,SentenceCoherence,
-    WriteToDescribe,WriteToAcomplishTasks,ExtendedWriting)
-VALUES (2,'A','1,2,3,4','5,6,7,10,14','8,9,11','12,13,15','16,17',
-        '18,19,20','1,2','3,4','5');
-INSERT INTO Writing(TestNumber,TestLetter,NumbersandNumercay,VerbPhrases,
-    NounPhrases,WritingConventions,SentenceFormation,SentenceCoherence,
-    WriteToDescribe,WriteToAcomplishTasks,ExtendedWriting)
-VALUES (2,'B','1,2,3,4','5,6,8,13,','7,9,12,14,16','11,15',
-        '10,17','18,19,20','1,2','3,4','5');
-INSERT INTO Writing(TestNumber,TestLetter,NumbersandNumercay,VerbPhrases,
-    NounPhrases,WritingConventions,SentenceFormation,SentenceCoherence,
-    WriteToDescribe,WriteToAcomplishTasks,ExtendedWriting)
-VALUES (3,'A','1,2,3,7','8,11,13,14','4,5,6','9,10,15','12,16','17,18,19,20',
-        '1,2','3,4','5');
-INSERT INTO Writing(TestNumber,TestLetter,NumbersandNumercay,VerbPhrases,
-    NounPhrases,WritingConventions,SentenceFormation,SentenceCoherence,
-    WriteToDescribe,WriteToAcomplishTasks,ExtendedWriting)
-VALUES (3,'B','1,2,3,4','5,6,7','8,9,10,11','14,15','13,16','12,17,19,19,20'
-        '1,2','3,4','5');
-INSERT INTO Writing(TestNumber,TestLetter,NumbersandNumercay,VerbPhrases,
-    NounPhrases,WritingConventions,SentenceFormation,SentenceCoherence,
-    WriteToDescribe,WriteToAcomplishTasks,ExtendedWriting)
-VALUES (4,'A','1,2,3,4','7,8,9,13','5,6,15','10,11,12','14,16','17,18,19,20',
-        '1,2','3,4','5');
-INSERT INTO Writing(TestNumber,TestLetter,NumbersandNumercay,VerbPhrases,
-    NounPhrases,WritingConventions,SentenceFormation,SentenceCoherence,
-    WriteToDescribe,WriteToAcomplishTasks,ExtendedWriting)
-VALUES (4,'B','1,2,3,4','5,9,10,11','7,8,14,16','6,13','12,15','17,18,19,20'
-        '1,2','3,4','5');
+VALUES (1,'A','1,2,3,5','4,8,11,12','6,7,9,16','10,13,14,15','17,18', '19,20','1,2','3,4','5'),
+(1,'B','1,2,3,4','5,8,16,17','6,7,9,15','10,12,13,14','11,18', '19,20','1,2','3,4','5'),
+(2,'A','1,2,3,4','5,6,7,10,14','8,9,11','12,13,15','16,17', '18,19,20','1,2','3,4','5'),
+(2,'B','1,2,3,4','5,6,8,13,','7,9,12,14,16','11,15', '10,17','18,19,20','1,2','3,4','5'),
+(3,'A','1,2,3,7','8,11,13,14','4,5,6','9,10,15','12,16','17,18,19,20', '1,2','3,4','5'),
+(3,'B','1,2,3,4','5,6,7','8,9,10,11','14,15','13,16','12,17,19,19,20', '1,2','3,4','5'),
+(4,'A','1,2,3,4','7,8,9,13','5,6,15','10,11,12','14,16','17,18,19,20', '1,2','3,4','5'),
+(4,'B','1,2,3,4','5,9,10,11','7,8,14,16','6,13','12,15','17,18,19,20', '1,2','3,4','5');
 
 INSERT INTO Speaking(TestNumber,TestLetter,NumbersAndNumeracyTerms,GreetingsInquiriesLeaveTakings,PhoneCompetency,ExpressOpinion,
-      InstructionsDirectionsLocations,Descriptions,NarrateParaphraseEvents,RequestsPermission,ExpressDissatificationApology
+      InstructionsDirectionsLocations,Descriptions,NarrateParaphraseEvents,RequestsPermission,ExpressDissatifactionApology
       ,NegotiateMeaning)
 Values (1, 'A', '1,2,3', '9,10', '11', '', '4,5,6', '', '7,8', '12,13,14', '15', '16'),
 (1, 'B', '1,2,3', '9,10', '11', '', '4,5,6', '', '7,8', '12,13,14', '15', '16'),
@@ -236,7 +207,7 @@ Values (1, 'A', '1,2,3', '9,10', '11', '', '4,5,6', '', '7,8', '12,13,14', '15',
 (3, 'A', '1,2,3', '', '9,10', '11', '4,5', '', '6,7,8', '12,13', '14,15', '16'),
 (3, 'B', '1,2,3', '', '9,10', '12', '4,5', '', '6,7,8', '11,13', '14,15', '16'),
 (4, 'A', '1,2,3', '', '9,10', '7,8', '4,5', '6', '', '11,12', '13,15', '14,16'),
-(4, 'B', '1,2,3', '', '9,10' '7,8', '4,5', '6', '', '11,12', '13,14', '15,16');
+(4, 'B', '1,2,3', '', '9,10', '7,8', '4,5', '6', '', '11,12', '13,14', '15,16');
 
 
 
