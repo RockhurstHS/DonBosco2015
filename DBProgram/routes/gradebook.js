@@ -151,3 +151,8 @@ res.redirect('/gradebook');
 });
 
 module.exports = router;
+
+/* GET form - create test grade */
+router.get('/grades', function(req,res,next) {
+  res.render('entities/gradebook/grades', { title: 'New Test Grade' });
+});

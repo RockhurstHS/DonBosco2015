@@ -1,0 +1,34 @@
+extends ../../layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  form(method='post', action='/gradebook/create')
+    fieldset
+      
+      p Student ID
+        input(name='StudentID')
+      
+      table  
+        tr
+          each val in [1, 2, 3, 4]
+            td 
+              label=val
+                input(type='radio', name='ID', value=val) 
+
+        tr
+          each val in ['A', 'B']
+            td
+              label=val
+                input(type='radio', name='Letter', value=val)
+                
+      - var n=1
+        while n<26
+          p=n
+            input(type='checkbox', name='P'+n++)
+      
+      
+          
+    p
+      input(type='submit', value='Save')
