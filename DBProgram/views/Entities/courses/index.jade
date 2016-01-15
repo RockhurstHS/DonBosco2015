@@ -25,6 +25,7 @@ block content
         td= course.TeacherID
         td= course.FirstName
         td= course.LastName
-        td= course.CourseName
+        td
+          a(href='/courses/'+ course.ID)= course.CourseName
         td= course.TimeHeld
         

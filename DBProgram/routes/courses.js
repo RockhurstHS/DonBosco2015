@@ -111,4 +111,13 @@ res.redirect('/courses');
   });
 });
 
+
+/* GET all gradebook home page. */
+router.get('/allgradebook', function(req, res, next) {
+  db.all("SELECT g.ID, g.StudentID, g.TestID, g.Score, s.FirstName, s.LastName, t.testname, t.testdate FROM gradebook g JOIN student s ON g.StudentID=s.ID JOIN test t ON g.TestID=t.ID", function(err,rows){
+    console.log('courses rows fetched: ' + rows.length);
+    res.render('entities/gradebook/index', { title: 'Gradebook', data: rows });
+  });
+});
+
 module.exports = router;
