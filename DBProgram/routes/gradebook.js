@@ -156,3 +156,57 @@ module.exports = router;
 router.get('/grades', function(req,res,next) {
   res.render('entities/gradebook/grades', { title: 'New Test Grade' });
 });
+
+/* POST new test grade */
+router.post('/grades', function(req,res,next){
+  var data = req.body;
+  // Begin a transaction.
+  // http://stackoverflow.com/questions/28803520/does-sqlite3-have-prepared-statements-in-node-js
+  db.beginTransaction(function(err, transaction) {
+    // Now we are inside a transaction.
+    // Use transaction as normal sqlite3.Database object.
+    transaction.run(
+      "INSERT INTO Tests(StudentID,Subject,TestNumber,TestLetter,P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,P17,P18,P19,P20,P21,P22,P23,P24,P25) " +
+      "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+      data.StudentID,
+      data.Subject,
+      data.TestNumber,
+      data.TestLetter,
+      data.P1,
+      data.P2,
+      data.P3,
+      data.P4,
+      data.P5,
+      data.P6,
+      data.P7,
+      data.P8,
+      data.P9,
+      data.P10,
+      data.P11,
+      data.P12,
+      data.P13,
+      data.P14,
+      data.P15,
+      data.P16,
+      data.P17,
+      data.P18,
+      data.P19,
+      data.P20,
+      data.P21,
+      data.P22,
+      data.P23,
+      data.P24,
+      data.P25
+    );
+
+
+    transaction.commit(function(err) {
+      if(err)
+        console.log('commit fail');
+      else
+        console.log('commit success');
+    });
+  });
+res.redirect('/gradebook');
+
+});
