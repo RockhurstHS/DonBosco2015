@@ -9,6 +9,13 @@ block content
       
       p Student ID
         input(name='StudentID')
+        
+      table
+        tr
+          each val in ['Reading', 'Listening', 'Writing', 'Speaking']
+            td
+              label=val
+                input(type='radio', name='Category', value=val)
       
       table  
         tr

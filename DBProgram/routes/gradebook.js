@@ -18,6 +18,7 @@ router.get('/', function(req, res, next) {
 });
 
 
+
 /* GET form - create grade */
 router.get('/create', function(req,res,next) {
   res.render('entities/gradebook/create', { title: 'New Grade' });

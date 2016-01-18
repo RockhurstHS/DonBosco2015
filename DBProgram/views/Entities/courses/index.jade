@@ -21,11 +21,11 @@ block content
       
     - each course in courses
       tr
-        td= course.ID
+        td= course.CourseID
         td= course.TeacherID
         td= course.FirstName
         td= course.LastName
         td
-          a(href='/courses/'+ course.ID)= course.CourseName
+          a(href='/courses/'+ course.CourseID)= course.CourseName
         td= course.TimeHeld
         

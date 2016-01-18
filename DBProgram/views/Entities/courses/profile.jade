@@ -1,0 +1,12 @@
+extends ../../layout
+
+block content
+  h1= title
+  
+  - var course = data
+  
+  a(href='/courses/' + course.ID + '/tests/1') TEST 1
+  a(href='/courses/' + course.ID + '/tests/2') TEST 2
+  a(href='/courses/' + course.ID + '/tests/3') TEST 3
+  a(href='/courses/' + course.ID + '/tests/4') TEST 4
+  
