@@ -11,12 +11,13 @@ engine.exec("PRAGMA foreign_keys = ON");
 
 /* GET all grades home page. */
 router.get('/', function(req, res, next) {
-  db.all("SELECT g.ID, g.StudentID, g.TestID, g.Score, s.FirstName, s.LastName, t.testname, t.testdate FROM gradebook g JOIN student s ON g.StudentID=s.ID JOIN test t ON g.TestID=t.ID", function(err,rows){
+  db.all("SELECT g.ID, g.StudentID, g.TestID, g.Score, s.FirstName, s.LastName, t.testname, t.testdate " +
+         "FROM gradebook g " +
+         "JOIN student s ON g.StudentID=s.ID JOIN tests t ON g.TestID=t.ID", function(err,rows){
     console.log('courses rows fetched: ' + rows.length);
     res.render('entities/gradebook/index', { title: 'Gradebook', data: rows });
   });
 });
-
 
 
 /* GET form - create grade */
