@@ -12,12 +12,8 @@ engine.exec("PRAGMA foreign_keys = ON");
 /* GET all students home page. */
 router.get('/', function(req, res, next) {
   db.all("SELECT * FROM Student", function(err,rows){
-    if(rows) {
-      console.log('students rows fetched: ' + rows.length);
-      res.render('entities/students/index', { title: 'Students', data: rows });
-    } else {
-      res.render('entities/students/index', { title: 'Students', data: false })
-    }
+    console.log('students rows fetched: ' + rows.length);
+    res.render('entities/students/index', { title: 'Students', data: rows });
   });
 });
 

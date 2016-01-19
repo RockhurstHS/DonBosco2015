@@ -7,49 +7,24 @@ block content
   a(href='/students/create') Create Student Profile
   a(href='/students/update') Update Student Profile
   a(href='/students/delete') Delete Student Profile
-   
-  - if (data)
-    - var students = data
-    table.indextable
+
+  - var students = data
+  table.indextable
+    tr
+      th ID
+      th FirstName
+      th MiddleInitial
+      th LastName
+      th RegistrationDate
+      th NativeLanguage
+      th Gender
+    - each student in students
       tr
-        th ID
-        th FirstName
-        th MiddleInitial
-        th LastName
-        th RegistrationDate
-        th NativeLanguage
-        th Gender
-      - each student in students
-        tr
-          td= student.ID
-          td= student.FirstName
-          td= student.MiddleInitial
-          td= student.LastName
-          td= student.RegistrationDate
-          td= student.NativeLanguage
-          td= student.Gender
-  - else
-    div No students.
-    
-    - if (data)
-    - var students = data
-    table.indextable
-      tr
-        th ID
-        th FirstName
-        th MiddleInitial
-        th LastName
-        th RegistrationDate
-        th NativeLanguage
-        th Gender
-      - each student in students
-        tr
-          td= student.ID
-          td= student.FirstName
-          td= student.MiddleInitial
-          td= student.LastName
-          td= student.RegistrationDate
-          td= student.NativeLanguage
-          td= student.Gender
-  - else
-    div No students.
+        td= student.ID
+        td= student.FirstName
+        td= student.MiddleInitial
+        td= student.LastName
+        td= student.RegistrationDate
+        td= student.NativeLanguage
+        td= student.Gender
+  
