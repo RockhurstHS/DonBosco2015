@@ -2,6 +2,20 @@
 
 PRAGMA foreign_keys = ON;
 
+DELETE FROM Tests;
+DELETE FROM StudentInCourse;
+DELETE FROM Gradebook;
+DELETE FROM Student;
+DELETE FROM Course;
+DELETE FROM Teacher;
+
+DROP TABLE Tests;
+DROP TABLE StudentInCourse;
+DROP TABLE Gradebook;
+DROP TABLE Student;
+DROP TABLE Course;
+DROP TABLE Teacher;
+
 CREATE TABLE Teacher(
     ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     FirstName               NVARCHAR(40) NOT NULL,
@@ -17,7 +31,7 @@ CREATE TABLE Course(
     TeacherID               INTEGER,
     CourseName              VARCHAR(40),
     TimeHeld                VARCHAR(20),
-FOREIGN KEY(TeacherID) REFERENCES Teacher(ID)
+    FOREIGN KEY(TeacherID) REFERENCES Teacher(ID)
 );
 
 CREATE TABLE Student(
@@ -47,11 +61,13 @@ CREATE TABLE Student(
     PEmail                   NVARCHAR(100)
 );
 
+/* sam said this isn't needed anymore
 CREATE TABLE Test(
     ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     TestName                TEXT NOT NULL,
     TestDate                TEXT NOT NULL
 );
+*/
 
 CREATE TABLE Gradebook(
     ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -66,22 +82,23 @@ CREATE TABLE StudentInCourse(
     StudentID               INTEGER NOT NULL,
     CourseID                INTEGER NOT NULL,
     PRIMARY KEY (StudentID,CourseID),
-FOREIGN KEY (StudentID) REFERENCES Student(ID),
-FOREIGN KEY (CourseID) REFERENCES Course(ID)
+    FOREIGN KEY (StudentID) REFERENCES Student(ID),
+    FOREIGN KEY (CourseID) REFERENCES Course(ID)
 );
 
+/* subject tables not needed - they are static
  CREATE TABLE Reading(
-  TestNumber                         INTEGER,
-  TestLetter                         VARCHAR(1),
-  NumbersAndNumeracyTerms            TEXT,
-  MorphemesAndSyntax                 TEXT,
-  WordsAndPhrases                    TEXT,
-  SameMeaning                        TEXT,
-  OppositeMeaning                    TEXT,
-  AppropriateAssociatedInformation   TEXT,
-  IdentifyInformation                TEXT,
-  ConstructMeaning                   TEXT,
-  ExtendMeaning                      TEXT
+    TestNumber                         INTEGER,
+    TestLetter                         VARCHAR(1),
+    NumbersAndNumeracyTerms            TEXT,
+    MorphemesAndSyntax                 TEXT,
+    WordsAndPhrases                    TEXT,
+    SameMeaning                        TEXT,
+    OppositeMeaning                    TEXT,
+    AppropriateAssociatedInformation   TEXT,
+    IdentifyInformation                TEXT,
+    ConstructMeaning                   TEXT,
+    ExtendMeaning                      TEXT
 );
 
  CREATE TABLE Listening(
@@ -129,9 +146,12 @@ Create Table Speaking(
   ExpressDissatifactionApology          TEXT,
   NegotiateMeaning                      TEXT
 );
+*/
 
  CREATE TABLE Tests(
+  ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   StudentID INTEGER,
+  CourseID INTEGER,
   Subject TEXT,
   TestNumber INTEGER,
   TestLetter VARCHAR(1),
@@ -159,11 +179,14 @@ Create Table Speaking(
   P22 BOOLEAN,
   P23 BOOLEAN,
   P24 BOOLEAN,
-  P25 BOOLEAN
+  P25 BOOLEAN,
+  FOREIGN KEY (StudentID) REFERENCES Student(ID),
+  FOREIGN KEY (CourseID) REFERENCES Course(ID)
 );
 
 
-/*Gradebook values VERRY IMPORTANT DO NOT ERASE */
+
+/*Gradebook values VERRY IMPORTANT DO NOT ERASE 
 INSERT INTO Reading(TestNumber, TestLetter, NumbersAndNumeracyTerms, MorphemesAndSyntax, WordsAndPhrases, SameMeaning, OppositeMeaning, AppropriateAssociatedInformation, IdentifyInformation, ConstructMeaning, ExtendMeaning)
 VALUES(1, 'A', '1,3,5,8', '', '2,4,6,7,9', '', '', '13,14,17', '10,11,12,15,18,19,20,21,23,25', '16,22,24',''),
 (1, 'B', '2,3,10,12', '', '1,4,5,6,7,8', '', '', '16,22', '13,14,15,18,19,20,21,23,24,25', '9,11,17', ''),
@@ -208,12 +231,12 @@ Values (1, 'A', '1,2,3', '9,10', '11', '', '4,5,6', '', '7,8', '12,13,14', '15',
 (3, 'B', '1,2,3', '', '9,10', '12', '4,5', '', '6,7,8', '11,13', '14,15', '16'),
 (4, 'A', '1,2,3', '', '9,10', '7,8', '4,5', '6', '', '11,12', '13,15', '14,16'),
 (4, 'B', '1,2,3', '', '9,10', '7,8', '4,5', '6', '', '11,12', '13,14', '15,16');
-
+*/
 
 
 /*
 Begining of values
-*/
+
 INSERT INTO Address(Street, City, State, Zip, Country)
 VALUES('11540 Cherokee Court','Leawood','KS','66211','USA'),
 ('5312 Payne Street','Shawnee','Kansas','66226','USA'),
@@ -231,6 +254,7 @@ VALUES('Oaxaca','Mexico'),
 ('Yucatan','Mexico'),
 ('Durango','Mexico'),
 ('Jalisco','Mexico');
+*/
 
 INSERT INTO Teacher(FirstName, MiddleInitial, LastName, Email, PhoneNumber)
 VALUES('Richard','D','Staihr','rstaihr@rockhursths.edu','111-111-1111'),
