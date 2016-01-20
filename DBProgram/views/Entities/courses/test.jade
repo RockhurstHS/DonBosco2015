@@ -32,5 +32,15 @@ block content
           td= key
           each s in data
             each v,k in s.tests
-              - var thisSection = k + subject // k is A1, B1 etc, subject is Reading etc
-              td=  ' of ' + assessment[thisSection][key].length
+              - var thisSection = k + subject /* k is A1, B1 etc, subject is Reading etc */
+              - var numWrongAnswers = 0
+              each i in v
+                - if (i.subject == subject)
+                  each j in i.wrongAnswers
+                    - if (assessment[thisSection][key].indexOf(j) != -1)
+                      - numWrongAnswers = numWrongAnswers + 1
+                  td= assessment[thisSection][key].length - numWrongAnswers +  ' of ' + assessment[thisSection][key].length
+                - else
+                  td &nbsp;
+                  
+/* http://www.jsonmate.com/permalink/569fd39b0b1b5e5854d3131d */
