@@ -21,12 +21,16 @@ block content
           th= key
       
     each subject in ['Reading','Listening','Writing','Speaking']
-      - var section = 'A1' + subject
       tr
         th= subject
         each s in data
           each t in s.tests
             th &nbsp;
-      each val,key in assessment[section]
+      - var generalSection = 'A1' + subject
+      each val,key in assessment[generalSection]
         tr
           td= key
+          each s in data
+            each v,k in s.tests
+              - var thisSection = k + subject // k is A1, B1 etc, subject is Reading etc
+              td=  ' of ' + assessment[thisSection][key].length
