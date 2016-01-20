@@ -34,13 +34,15 @@ block content
             each v,k in s.tests
               - var thisSection = k + subject /* k is A1, B1 etc, subject is Reading etc */
               - var numWrongAnswers = 0
+              - var hasTest = false
               each i in v
                 - if (i.subject == subject)
+                  - hasTest = true
                   each j in i.wrongAnswers
                     - if (assessment[thisSection][key].indexOf(j) != -1)
                       - numWrongAnswers = numWrongAnswers + 1
                   td= assessment[thisSection][key].length - numWrongAnswers +  ' of ' + assessment[thisSection][key].length
-                - else
-                  td &nbsp;
+              - if (!hasTest)
+                td &nbsp;
                   
 /* http://www.jsonmate.com/permalink/569fd39b0b1b5e5854d3131d */
