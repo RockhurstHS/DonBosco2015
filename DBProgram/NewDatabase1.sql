@@ -309,3 +309,10 @@ SELECT *
 FROM Tests
 JOIN Courses ON Tests.CourseID = Course.ID
 WHERE Course.ID = 3
+
+SELECT *
+FROM Tests
+JOIN Course ON Tests.CourseID = Course.ID
+JOIN Student ON Tests.StudentID = Student.ID
+WHERE Course.ID = 3
+ORDER BY Student.LastName, Student.FirstName, Student.ID
