@@ -10,25 +10,28 @@ block content
       p Student ID
         input(name='StudentID')
         
+      p Course ID
+        input(name='CourseID')
+        
       table
         tr
           each val in ['Reading', 'Listening', 'Writing', 'Speaking']
             td
               label=val
-                input(type='radio', name='Category', value=val)
+                input(type='radio', name='Subject', value=val)
       
       table  
         tr
           each val in [1, 2, 3, 4]
             td 
               label=val
-                input(type='radio', name='ID', value=val) 
+                input(type='radio', name='TestNumber', value=val) 
 
         tr
           each val in ['A', 'B']
             td
               label=val
-                input(type='radio', name='Letter', value=val)
+                input(type='radio', name='TestLetter', value=val)
                 
       - var n=1
         while n<26

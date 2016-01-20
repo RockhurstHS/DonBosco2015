@@ -398,7 +398,6 @@ var Assesment = {
 	}
 };
 
-
 /* GET all courses home page. */
 router.get('/', function(req, res, next) {
   db.all("SELECT c.ID AS CourseID, t.FirstName, t.ID AS TeacherID, t.LastName, c.CourseName, c.TimeHeld, c.TeacherID FROM course c JOIN teacher t ON c.TeacherID=t.ID", function(err,rows){
@@ -406,6 +405,7 @@ router.get('/', function(req, res, next) {
     res.render('entities/courses/index', { title: 'courses', data: rows });
   });
 });
+
 /* GET form - create course */
 router.get('/create', function(req,res,next) {
   res.render('entities/courses/create', { title: 'New Course' });
@@ -468,12 +468,12 @@ res.redirect('/courses');
   });
 });
 
-/* Draw update course */
+/* GET - update course */
 router.get('/update', function(req, res, next){
    res.render('entities/courses/update', { title: 'Update Course' });
 });
 
-/* update course */
+/* POST - update course */
 router.post('/update', function(req,res,next){
   var data = req.body;
   // Begin a transaction.
@@ -487,7 +487,7 @@ router.post('/update', function(req,res,next){
       data.CourseName,
       data.TimeHeld,
       data.ID
-      );
+    );
 
 
     transaction.commit(function(err) {
@@ -497,26 +497,33 @@ router.post('/update', function(req,res,next){
         console.log('commit success');
 
     });
-res.redirect('/courses');
+    res.redirect('/courses');
   });
 });
 
 /* GET tests home page. */
-router.get('/:id/tests/:id', function(req, res, next) {
-  db.all("SELECT g.ID, g.StudentID, g.TestID, g.Score, s.FirstName, s.LastName, t.testname, t.testdate FROM gradebook g JOIN student s ON g.StudentID=s.ID JOIN test t ON g.TestID=t.ID", function(err,rows){
+router.get('/:courseid/tests/:testnumber', function(req, res, next) {
+  var testNumber = req.params.testnumber;
+  db.all("SELECT g.ID, g.StudentID, g.TestID, g.Score, s.FirstName, s.LastName, t.testname, t.testdate " +
+         "FROM gradebook g " +
+         "JOIN student s ON g.StudentID=s.ID " +
+         "JOIN test t ON g.TestID=t.ID", function(err,rows){
     console.log('courses rows fetched: ' + rows.length);
-    res.render('entities/courses/test1', { title: 'Test 1', data: rows, assessment: Assesment});
+    res.render('entities/courses/test', { title: 'Test ' + testNumber, data: rows, assessment: Assesment});
   });
 });
 
 /* GET one course */
 router.get('/:id', function(req,res,next) {
   var id = req.params.id;
-  db.all("SELECT * FROM Course " +
-         "WHERE Course.ID = " +id,
+  db.all("SELECT * " +
+         "FROM Course " +
+         "JOIN StudentInCourse ON Course.ID = StudentInCourse.CourseID " +
+         "JOIN Student ON StudentInCourse.StudentID = Student.ID " +
+         "WHERE Course.ID = " + id,
   function(err, rows) {
     console.log('one course fetched, id = ' + id);
-    res.render('entities/courses/profile', { title: rows[0].CourseName, data: rows[0] });
+    res.render('entities/courses/profile', { title: rows[0].CourseName, data: rows });
   });
 });
 

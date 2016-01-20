@@ -150,11 +150,11 @@ Create Table Speaking(
 
  CREATE TABLE Tests(
   ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  StudentID INTEGER,
-  CourseID INTEGER,
-  Subject TEXT,
-  TestNumber INTEGER,
-  TestLetter VARCHAR(1),
+  StudentID INTEGER NOT NULL,
+  CourseID INTEGER NOT NULL,
+  Subject TEXT NOT NULL,
+  TestNumber INTEGER NOT NULL,
+  TestLetter VARCHAR(1) NOT NULL,
   P1 BOOLEAN,
   P2 BOOLEAN,
   P3 BOOLEAN,
@@ -265,12 +265,13 @@ VALUES('1','How to Swag','Monday 4:20 p.m.'),
 ('2','Yelling 101','Wednesday 1:00 a.m.'),
 ('1','Hazing 101','Saturday 6:00 a.m.');
 
-INSERT INTO Student(AddressID, OriginAddressID, FirstName, MiddleInitial, LastName, SSN, RegistrationDate, MaritalStatus, Email, PrimaryPhoneNumber, DOB, NativeLanguage)
-VALUES ('1','1','Echo','E','McDonald','999-99-9999','1/5/15','Complicated','echoswag@djkhaled.com','321-234-5932','23/32/4323','Born of Swag'),
-('2','2','Bravo','B','GenericLastName','123-45-6789','1/1/11','YES','email@gmail.com','*123-456-789-0123','1/1/11','White AF'),
-('3','3','Qui','G','Jin','157-56-7890','1/25/1','Jedi','quigonrox@jedi.gov','577-568-235-4575','12/25/0','Courosant'),
-('4','4','Delta','D','Walmart','406-45-8034','1/9/14','Widowed 56 times','none','none','never born','All');
+INSERT INTO Student(FirstName, MiddleInitial, LastName, SSN, RegistrationDate, MaritalStatus, Email, PhoneNumber, DOB, NativeLanguage, Gender)
+VALUES ('Echo','E','McDonald','999-99-9999','1/5/15','Complicated','echoswag@djkhaled.com','321-234-5932','23/32/4323','Born of Swag','M'),
+('Bravo','B','GenericLastName','123-45-6789','1/1/11','YES','email@gmail.com','*123-456-789-0123','1/1/11','White AF','F'),
+('Qui','G','Jin','157-56-7890','1/25/1','Jedi','quigonrox@jedi.gov','577-568-235-4575','12/25/0','Courosant','M'),
+('Delta','D','Walmart','406-45-8034','1/9/14','Widowed 56 times','none','none','never born','All','F');
 
+/* no longer using this format
 INSERT INTO Test(TestName, TestDate)
 VALUES('Assesment 1','1/1/11'),
 ('Assesment 2','2/2/11'),
@@ -289,9 +290,22 @@ VALUES('1','1','67'),
 ('4','1','23'),
 ('4','2','34'),
 ('4','3','56');
+*/
 
 INSERT INTO StudentInCourse(StudentID,CourseID)
 VALUES('1','3'),
 ('2','3'),
 ('3','2'),
 ('4','1');
+
+
+SELECT *
+FROM Course
+JOIN StudentInCourse ON Course.ID = StudentInCourse.CourseID
+JOIN Student ON StudentInCourse.StudentID = Student.ID
+WHERE Course.ID = 3
+
+SELECT *
+FROM Tests
+JOIN Courses ON Tests.CourseID = Course.ID
+WHERE Course.ID = 3

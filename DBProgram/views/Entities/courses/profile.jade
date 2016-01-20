@@ -3,10 +3,18 @@ extends ../../layout
 block content
   h1= title
   
-  - var course = data
+  - var d = data
   
-  a(href='/courses/' + course.ID + '/tests/1') TEST 1
-  a(href='/courses/' + course.ID + '/tests/2') TEST 2
-  a(href='/courses/' + course.ID + '/tests/3') TEST 3
-  a(href='/courses/' + course.ID + '/tests/4') TEST 4
+  each val in [1,2,3,4]
+    a(href='/courses/' + d[0].ID + '/tests/' + val) TEST #{val}
   
+  table.indextable
+    tr
+      th ID
+      th Last Name
+      th First Name
+    each student in data
+      tr
+        td= student.StudentID
+        td= student.LastName
+        td= student.FirstName      

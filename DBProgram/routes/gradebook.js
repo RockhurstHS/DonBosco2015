@@ -11,14 +11,8 @@ engine.exec("PRAGMA foreign_keys = ON");
 
 /* GET all grades home page. */
 router.get('/', function(req, res, next) {
-  db.all("SELECT g.ID, g.StudentID, g.TestID, g.Score, s.FirstName, s.LastName, t.testname, t.testdate " +
-         "FROM gradebook g " +
-         "JOIN student s ON g.StudentID=s.ID JOIN tests t ON g.TestID=t.ID", function(err,rows){
-    console.log('courses rows fetched: ' + rows.length);
-    res.render('entities/gradebook/index', { title: 'Gradebook', data: rows });
-  });
+  res.render('entities/gradebook/grades', { title: 'Enter a Grade' });
 });
-
 
 /* GET form - create grade */
 router.get('/create', function(req,res,next) {
@@ -150,8 +144,6 @@ res.redirect('/gradebook');
 
 });
 
-module.exports = router;
-
 /* GET form - create test grade */
 router.get('/grades', function(req,res,next) {
   res.render('entities/gradebook/grades', { title: 'New Test Grade' });
@@ -166,9 +158,10 @@ router.post('/grades', function(req,res,next){
     // Now we are inside a transaction.
     // Use transaction as normal sqlite3.Database object.
     transaction.run(
-      "INSERT INTO Tests(StudentID,Subject,TestNumber,TestLetter,P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,P17,P18,P19,P20,P21,P22,P23,P24,P25) " +
-      "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+      "INSERT INTO Tests(StudentID,CourseID,Subject,TestNumber,TestLetter,P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,P17,P18,P19,P20,P21,P22,P23,P24,P25) " +
+      "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
       data.StudentID,
+      data.CourseID,
       data.Subject,
       data.TestNumber,
       data.TestLetter,
@@ -210,3 +203,5 @@ router.post('/grades', function(req,res,next){
 res.redirect('/gradebook');
 
 });
+
+module.exports = router;
