@@ -514,13 +514,13 @@ router.get('/:courseid/tests/:testnumber', function(req, res, next) {
     console.log('courses rows fetched: ' + rows.length);
 
     //objects are also associative arrays
-    var students = {};
+    var students = {}; //new object
     
     //foreach test in the course
     rows.forEach(function(row){
       
       //foreach problem in the test
-      var wrongAnswers = [];
+      var wrongAnswers = []; //new array
       for(var i = 1; i < 26; i++) {
         var problem = 'P' + i;
         if(row[problem] == 'on') {
@@ -544,9 +544,6 @@ router.get('/:courseid/tests/:testnumber', function(req, res, next) {
         subject: subject,
         wrongAnswers: wrongAnswers
       });
-      
-      
-      
       
     });
     console.log(JSON.stringify(students));
