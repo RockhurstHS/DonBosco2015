@@ -298,7 +298,6 @@ VALUES('1','3'),
 ('3','2'),
 ('4','1');
 
-
 SELECT *
 FROM Course
 JOIN StudentInCourse ON Course.ID = StudentInCourse.CourseID
@@ -315,4 +314,5 @@ FROM Tests
 JOIN Course ON Tests.CourseID = Course.ID
 JOIN Student ON Tests.StudentID = Student.ID
 WHERE Course.ID = 3
+AND Tests.TestNumber = 1
 ORDER BY Student.LastName, Student.FirstName, Student.ID

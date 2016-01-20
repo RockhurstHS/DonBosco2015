@@ -13,7 +13,7 @@ engine.exec("PRAGMA foreign_keys = ON");
 
 var Assessment = {
   "A1Reading" : {
-  	"NumbersAndNumeracyTerms":[1,3,5,8],
+    "NumbersAndNumeracyTerms":[1,3,5,8],
   	"MorphemesAndSyntax":[],
   	"WordaAndPhrases":[2,4,6,7,9],
   	"SameMeaning":[],
@@ -510,8 +510,8 @@ router.get('/:courseid/tests/:testnumber', function(req, res, next) {
         "JOIN Course ON Tests.CourseID = Course.ID " +
         "JOIN Student ON Tests.StudentID = Student.ID " +
         "WHERE Course.ID = " + courseId + " " +
+        "AND Tests.TestNumber = " + testNumber + " " +
         "ORDER BY Student.LastName, Student.FirstName, Student.ID", function(err,rows){
-    console.log('courses rows fetched: ' + rows.length);
 
     //objects are also associative arrays
     var students = {}; //new object
@@ -533,19 +533,28 @@ router.get('/:courseid/tests/:testnumber', function(req, res, next) {
       var subject = row.Subject;
 
       if(!students.hasOwnProperty(student)) {
-        students[student] = {};
+        students[student] = { //new object, one student
+          FirstName : row.FirstName,
+          LastName : row.LastName,
+          StudentID : row.StudentID
+        };
       }
       
-      if(!students[student].hasOwnProperty(test)) {
-        students[student][test] = [];
+      if(!students[student].hasOwnProperty('tests')) {
+        students[student].tests = {};
       }
       
-      students[student][test].push({
+      if(!students[student].tests.hasOwnProperty(test)) {
+        students[student].tests[test] = [];
+      }
+      
+      students[student].tests[test].push({ //new object with subject and incorrect answers
         subject: subject,
         wrongAnswers: wrongAnswers
       });
       
     });
+    
     console.log(JSON.stringify(students));
     res.render('entities/courses/test', { title: 'Test ' + testNumber, data: students, assessment: Assessment});
   });

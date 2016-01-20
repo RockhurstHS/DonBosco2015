@@ -9,18 +9,24 @@ block content
 
   table.indextable
     tr
-      th Reading
-    
-  
-  table.indextable
+      th &nbsp;
+      each s in data
+        each t in s.tests
+          th= s.LastName + ', ' + s.FirstName + ': ' + s.StudentID
+          
     tr
-      th Listening
-  
-  table.indextable
-    tr
-      th Writing
-  
-  table.indextable
-    tr
-      th Speaking
-  
+      th Test
+      each s in data
+        each val,key in s.tests
+          th= key
+      
+    each subject in ['Reading','Listening','Writing','Speaking']
+      - var section = 'A1' + subject
+      tr
+        th= subject
+        each s in data
+          each t in s.tests
+            th &nbsp;
+      each val,key in assessment[section]
+        tr
+          td= key
